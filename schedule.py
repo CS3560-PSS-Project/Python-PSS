@@ -208,7 +208,7 @@ class Schedule:
                 return False
         return True
 
-    def edit_task(self, taskName, **kwargs):
+    def edit_task(self, taskName, **kwargs): # miro: this method might have logical or syntax errors; I will fix it soon
         task = self.find_task(taskName) #tuple(task, index)
         if(task != None):
             match self.__check_type(task):
@@ -321,7 +321,7 @@ class Schedule:
             any.display()
             print()
           
-
+# from Thanh starter file
 #     def create_task(self, name, type, start_date, start_time, duration, end_date=None, frequency=None):
 #         # Make sure names of tasks are unique 
 #         # case_type = self.__check_type(type)
