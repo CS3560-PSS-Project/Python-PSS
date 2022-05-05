@@ -5,7 +5,7 @@ from task import *
 class User:
  def __init__(self, user_name, id):
    self.name = user_name
-   self.name = id
+   self.id = id
    self.schedule = Schedule()
 
  def create_task(self, task):
@@ -20,8 +20,6 @@ class User:
  def find_task(self, name):
      self.schedule.find_task(name)
    
-
-
    
  
 #  def write_schedule(self, filename):
