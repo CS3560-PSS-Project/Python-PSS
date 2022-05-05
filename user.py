@@ -5,7 +5,7 @@ from task import *
 class User:
  def __init__(self, user_name, id):
    self.name = user_name
-   self.id = id
+   self.name = id
    self.schedule = Schedule()
 
  def create_task(self, task):
@@ -19,7 +19,46 @@ class User:
  
  def find_task(self, name):
      self.schedule.find_task(name)
-   
+
+ def write_schedule(self, filename):
+    with open(filename, 'w') as f:
+        f.write("{")
+        f.write("\n\"Recurring\":\n\t{")
+        for any in self.schedule.recurring_tasks:
+            f.write("\n\t\""+any.name+"\":\n\t\t{")
+            f.write("\n")
+            f.write("\t\t\t\"Type\":\""+any.type+"\",\n")
+            f.write("\t\t\t\"Start Date\":"+str(any.start_date)+",\n")
+            f.write("\t\t\t\"Start Time\":"+str(any.start_time)+",\n")
+            f.write("\t\t\t\"Duration\":"+str(any.duration)+"\n")
+            f.write("\t\t},")
+            
+        f.write("\n\t},")
+        f.write("\n\"Transient\":\n\t{")
+        for any in self.schedule.transient_tasks:
+            f.write("\n\t\""+any.name+"\":\n\t\t{")
+            f.write("\n")
+            f.write("\t\t\t\"Type\":\""+any.type+"\",\n")
+            f.write("\t\t\t\"Start Date\":"+str(any.start_date)+",\n")
+            f.write("\t\t\t\"Start Time\":"+str(any.start_time)+",\n")
+            f.write("\t\t\t\"Duration\":"+str(any.duration)+"\n")
+            f.write("\t\t},")
+            
+        f.write("\n\t},")
+        f.write("\n\"Anti\":\n\t{")
+        for any in self.schedule.anti_tasks:
+            f.write("\n\t\""+any.name+"\":\n\t\t{")
+            f.write("\n")
+            f.write("\t\t\t\"Type\":\""+any.type+"\",\n")
+            f.write("\t\t\t\"Start Date\":"+str(any.start_date)+",\n")
+            f.write("\t\t\t\"Start Time\":"+str(any.start_time)+",\n")
+            f.write("\t\t\t\"Duration\":"+str(any.duration)+"\n")
+            f.write("\t\t},")
+        
+        f.write("\n\t}")
+        f.write("\n}")
+
+
    
  
 #  def write_schedule(self, filename):
