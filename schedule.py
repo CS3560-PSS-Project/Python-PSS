@@ -291,7 +291,7 @@ class Schedule:
                                     self.anti_tasks.sort(key=lambda task: self.anti_tasks[task[1]].date_time_obj)
                                     print("task successfully edited")
                                 else:
-                                    print("cannot be edited; it crosses over days")
+                                    print("cannot be edited; a recurring task doesn'y exist")
                                     self.anti_tasks[task[1]] = task[0] #back to inital value
                             else:
                                 print("cannot be edited; it crosses over days")
