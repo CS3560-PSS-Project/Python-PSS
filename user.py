@@ -24,36 +24,50 @@ class User:
     with open(filename, 'w') as f:
         f.write("{")
         f.write("\n\"Recurring\":\n\t{")
+        i=0
         for any in self.schedule.recurring_tasks:
             f.write("\n\t\""+any.name+"\":\n\t\t{")
             f.write("\n")
             f.write("\t\t\t\"Type\":\""+any.type+"\",\n")
-            f.write("\t\t\t\"Start Date\":"+str(any.start_date)+",\n")
-            f.write("\t\t\t\"Start Time\":"+str(any.start_time)+",\n")
+            f.write("\t\t\t\"Start Date\":\""+str(any.start_date)+"\",\n")
+            f.write("\t\t\t\"Start Time\":\""+str(any.start_time)+"\",\n")
+            f.write("\t\t\t\"Frequency\":\""+str(any.frequency)+"\",\n")
             f.write("\t\t\t\"Duration\":"+str(any.duration)+"\n")
-            f.write("\t\t},")
-            
+            if i is (len(self.schedule.recurring_tasks) -1):
+                f.write("\t\t}")
+            else:
+                f.write("\t\t},")
+            i+=1
+        i = 0
         f.write("\n\t},")
         f.write("\n\"Transient\":\n\t{")
         for any in self.schedule.transient_tasks:
             f.write("\n\t\""+any.name+"\":\n\t\t{")
             f.write("\n")
             f.write("\t\t\t\"Type\":\""+any.type+"\",\n")
-            f.write("\t\t\t\"Start Date\":"+str(any.start_date)+",\n")
-            f.write("\t\t\t\"Start Time\":"+str(any.start_time)+",\n")
+            f.write("\t\t\t\"Start Date\":\""+str(any.start_date)+"\",\n")
+            f.write("\t\t\t\"Start Time\":\""+str(any.start_time)+"\",\n")
             f.write("\t\t\t\"Duration\":"+str(any.duration)+"\n")
-            f.write("\t\t},")
-            
+            if i is (len(self.schedule.transient_tasks) -1):
+                f.write("\t\t}")
+            else:
+                f.write("\t\t},")
+            i+=1
+        i = 0
         f.write("\n\t},")
         f.write("\n\"Anti\":\n\t{")
         for any in self.schedule.anti_tasks:
             f.write("\n\t\""+any.name+"\":\n\t\t{")
             f.write("\n")
             f.write("\t\t\t\"Type\":\""+any.type+"\",\n")
-            f.write("\t\t\t\"Start Date\":"+str(any.start_date)+",\n")
-            f.write("\t\t\t\"Start Time\":"+str(any.start_time)+",\n")
+            f.write("\t\t\t\"Start Date\":\""+str(any.start_date)+"\",\n")
+            f.write("\t\t\t\"Start Time\":\""+str(any.start_time)+"\",\n")
             f.write("\t\t\t\"Duration\":"+str(any.duration)+"\n")
-            f.write("\t\t},")
+            if i is (len(self.schedule.anti_tasks) -1):
+                f.write("\t\t}")
+            else:
+                f.write("\t\t},")
+            i+=1
         
         f.write("\n\t}")
         f.write("\n}")
