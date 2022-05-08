@@ -6,18 +6,18 @@ from task import *
 def main():
     user1 = User("Tom", 1)
     # task1 = RecurringTask("task1", "study", "20220528", 12.10, 1.25, "20220801", "daily")
-    # task2 = TransientTask("task2", "visit", "20220603", 11, 0.32)
-    # task3 = AntiTask("task3", "cancellation", "20220701", 12.10, 1.25)     
+    # task2 = TransientTask("task2", "visit", "20220603", 12, 0.32)
+    # task3 = AntiTask("task3", "cancellation", "20220603", 12.10, 1.25)     
     # task4 = TransientTask("task4", "visit", "20220701", 11.50, 1)
-    # task5 = RecurringTask("task5", "study", "20220301", 12, 1, "20220430", "daily")
+    # task5 = RecurringTask("task5", "study", "20220301", 18, 1, "20220630", "daily")
     # task6 = AntiTask("task6", "cancellation", "20220421", 12, 1.25)
-    # task7 = TransientTask("task7", "visit", "20220701", 12.10, 1.25)
+    # task7 = TransientTask("task7", "visit", "20220603", 9.10, 1.25)
     # task8 = AntiTask("task8", "cancellation", "20220801", 12, 1.25)
     # task9 = AntiTask("task9", "cancellation", "20220725", 12, 1.25)
-    # task10 = AntiTask("task33", "cancellation", "20220603", 12.10, 1.25) 
+    # task10 = AntiTask("task10", "cancellation", "20220603", 12.10, 1.25) 
     # user1.create_task(task1)
-    # user1.create_task(task2)
     # user1.create_task(task3)
+    # user1.create_task(task2)
     # user1.create_task(task4)
     # user1.create_task(task5)
     # user1.create_task(task6)
@@ -25,13 +25,13 @@ def main():
     # user1.create_task(task8)
     # user1.create_task(task9)
     # user1.create_task(task10)
-    #user1.schedule.edit_task("task1", name='task111', frequency='weekly') #start_time=9.75, duration=0.35, end_date="20220710"
-    # user1.schedule.edit_task("new task 3", start_date='20220809')
-
-    # user1.schedule.printSchedule()
-    # test = task2.clone()
-    #name='task5',start_date='20220801'start_time=12.0  
     # user1.write_schedule("../Python-PSS/Schedule.json")
+
+    #user1.schedule.edit_task("task1", name='task111', frequency='weekly') #start_time=9.75, duration=0.35, end_date="20220710"
+    #user1.schedule.edit_task("new task 3", start_date='20220809')
+
+    #user1.schedule.viewSchedule("20220303", "7") #1 for the same day, 7 for a week ....
+
 
     while True:
         print("----------Menu----------")

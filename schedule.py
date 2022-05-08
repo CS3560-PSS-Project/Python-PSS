@@ -191,6 +191,20 @@ class Schedule:
         else:
             print("task does not exist")
       
+    def __findAssociatedTasks(self, task):
+        if task.frequency == 'daily':
+            booked_step = 1
+        else:
+            booked_step = 7
+        booked = [task.date_time_obj + timedelta(days=x) for x in \
+            range(0, (task.date_time_end_obj-task.date_time_obj).days + 2, booked_step)]
+        results = []
+        cloneResults = []
+        for any in self.anti_tasks:
+            if any.date_time_obj in booked and any.duration == task.duration:
+                results.append(any)
+                cloneResults.append(any.clone())
+        return(results, cloneResults)
 
     def __deleteAssociatedTasks(self, task):
         if task.frequency == 'daily':
@@ -289,6 +303,52 @@ class Schedule:
                         return False 
         else:
             print("task doesn't exist")
+    
+    def __dayView(self, date):
+        result = []
+        date_obj = datetime.strptime(date, '%Y%m%d')
+        for any in self.recurring_tasks:
+            if any.frequency == 'daily':
+                step = 1
+            else:
+                step = 7
+            bookedDates = [(any.date_time_obj + timedelta(days=x)).date() for x in \
+                range(0, (any.date_time_end_obj-any.date_time_obj).days + 2, step)]
+            listOfAntiTasks = self.__findAssociatedTasks(any)[0]
+            flag = False
+            if date_obj.date() in bookedDates:
+                flag = True
+                for antiTask in listOfAntiTasks:
+                    if antiTask.date_time_obj.date() == date_obj.date():
+                        flag = False
+                        break
+            if flag:
+                result.append(any)
+        for any in self.transient_tasks:
+            if any.date_time_obj.date() == date_obj.date():
+                result.append(any)    
+        result.sort(key=lambda task: task.date_time_obj.time())
+        print("----> ", date_obj.date(), " <----")
+        counter = 1
+        for any in result:
+            print("[", counter, "]")
+            print("task Name: ", any.name)
+            print("Start time: {:d}:{:02d}".format(any.date_time_obj.hour, any.date_time_obj.minute))
+            print("Duration: ", any.duration_obj)
+            counter+=1
+       
+    def viewSchedule(self, date, numOfDays):
+        if(re.match("^[0-9]{8}$", date)): 
+            date_obj = datetime.strptime(date, '%Y%m%d')
+            if numOfDays.isnumeric():
+                if int(numOfDays) < 0:
+                    numOfDays = 0
+                dates = [(date_obj + timedelta(days=x)).strftime("%Y%m%d") for x in range(0, int(numOfDays))]
+                for date in dates:
+                    self.__dayView(date)
+        else:
+            print("date should be in the following format: 'YYYYMMDD'")
+
 
     def printSchedule(self):
         print("\nRecurring:\n")
@@ -303,7 +363,8 @@ class Schedule:
         for any in self.anti_tasks:
             any.display()
             print()
-          
+    
+
 # from Thanh starter file
 #     def create_task(self, name, type, start_date, start_time, duration, end_date=None, frequency=None):
 #         # Make sure names of tasks are unique 
