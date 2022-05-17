@@ -18,89 +18,112 @@ class User:
         self.schedule.delete_task(name)
  
     def find_task(self, name):
-        self.schedule.find_task(name)
+        if self.schedule.find_task(name) == None:
+            print("Task does not exist.")
+    
+    def read_schedule(self, filename):
+        self.schedule.read_schedule(filename)
 
     def write_schedule(self, filename):
-        with open(filename, 'w') as f:
-            f.write("{")
+        data = []
+        for any in self.schedule.recurring_tasks:
+            entry = {'Name': any.name, 'Type': any.type, 'Start Date': any.start_date,\
+                'Start Time': any.start_time, 'Duration':any.duration, 'End Date':any.end_date,\
+                    'Frequency': any.frequency}
+            data.append(entry)
+        for any in self.schedule.anti_tasks:
+            entry = {'Name': any.name, 'Type': any.type, 'Start Date': any.start_date,\
+                'Start Time': any.start_time, 'Duration':any.duration}
+            data.append(entry)
+        for any in self.schedule.transient_tasks:
+            entry = {'Name': any.name, 'Type': any.type, 'Start Date': any.start_date,\
+                'Start Time': any.start_time, 'Duration':any.duration}
+            data.append(entry)
 
-            f.write("\n\"Recurring\":\n\t[")
-            i=0
-            for any in self.schedule.recurring_tasks:
-                f.write("\n\t\t{")
-                f.write("\n")
-                f.write("\t\t\t\"Name\":\""+any.name+"\",\n")
-                f.write("\t\t\t\"Type\":\""+any.type+"\",\n")
-                f.write("\t\t\t\"Start Date\":\""+str(any.start_date)+"\",\n")
-                f.write("\t\t\t\"Start Time\":\""+str(any.start_time)+"\",\n")
-                f.write("\t\t\t\"Duration\":"+str(any.duration)+",\n")
-                f.write("\t\t\t\"End Date\":"+str(any.end_date)+",\n")
-                f.write("\t\t\t\"Frequency\":\""+str(any.frequency)+"\"\n")                            
-                if i is (len(self.schedule.recurring_tasks) -1):
-                    f.write("\t\t}")
-                else:
-                    f.write("\t\t},")
-                i+=1
-            i = 0
-            f.write("\n\t],")
+        jsonFile = json.dumps(data, indent=2)
+        file = open(filename, 'w')
+        file.write(jsonFile)
+        file.close()
 
-            f.write("\n\"Transient\":\n\t[")
-            i=0
-            for any in self.schedule.transient_tasks:
-                f.write("\n\t\t{")
-                f.write("\n")
-                f.write("\t\t\t\"Name\":\""+any.name+"\",\n")
-                f.write("\t\t\t\"Type\":\""+any.type+"\",\n")
-                f.write("\t\t\t\"Start Date\":\""+str(any.start_date)+"\",\n")
-                f.write("\t\t\t\"Start Time\":\""+str(any.start_time)+"\",\n")
-                f.write("\t\t\t\"Duration\":"+str(any.duration)+"\n")                          
-                if i is (len(self.schedule.transient_tasks) -1):
-                    f.write("\t\t}")
-                else:
-                    f.write("\t\t},")
-                i+=1
-            i = 0
-            f.write("\n\t],")
+    #def write_schedule(self, filename):
+        # with open(filename, 'w') as f:
+        #     f.write("{")
+        #     f.write("\n\"Recurring\":\n\t[")
+        #     i=0
+        #     for any in self.schedule.recurring_tasks:
+        #         f.write("\n\t\t{")
+        #         f.write("\n")
+        #         f.write("\t\t\t\"Name\":\""+any.name+"\",\n")
+        #         f.write("\t\t\t\"Type\":\""+any.type+"\",\n")
+        #         f.write("\t\t\t\"Start Date\":\""+any.start_date+"\",\n")
+        #         f.write("\t\t\t\"Start Time\":\""+any.start_time+"\",\n")
+        #         f.write("\t\t\t\"Duration\":"+any.duration+",\n")
+        #         f.write("\t\t\t\"End Date\":"+any.end_date+",\n")
+        #         f.write("\t\t\t\"Frequency\":\""+any.frequency+"\"\n")                            
+        #         if i is (len(self.schedule.recurring_tasks) -1):
+        #             f.write("\t\t}")
+        #         else:
+        #             f.write("\t\t},")
+        #         i+=1
+        #     i = 0
+        #     f.write("\n\t],")
+
+        #     f.write("\n\"Transient\":\n\t[")
+        #     i=0
+        #     for any in self.schedule.transient_tasks:
+        #         f.write("\n\t\t{")
+        #         f.write("\n")
+        #         f.write("\t\t\t\"Name\":\""+any.name+"\",\n")
+        #         f.write("\t\t\t\"Type\":\""+any.type+"\",\n")
+        #         f.write("\t\t\t\"Start Date\":\""+any.start_date+"\",\n")
+        #         f.write("\t\t\t\"Start Time\":\""+any.start_time+"\",\n")
+        #         f.write("\t\t\t\"Duration\":"+any.duration+"\n")                          
+        #         if i is (len(self.schedule.transient_tasks) -1):
+        #             f.write("\t\t}")
+        #         else:
+        #             f.write("\t\t},")
+        #         i+=1
+        #     i = 0
+        #     f.write("\n\t],")
             
-            f.write("\n\"Anti\":\n\t[")
-            i=0
-            for any in self.schedule.anti_tasks:
-                f.write("\n\t\t{")
-                f.write("\n")
-                f.write("\t\t\t\"Name\":\""+any.name+"\",\n")
-                f.write("\t\t\t\"Type\":\""+any.type+"\",\n")
-                f.write("\t\t\t\"Start Date\":\""+str(any.start_date)+"\",\n")
-                f.write("\t\t\t\"Start Time\":\""+str(any.start_time)+"\",\n")
-                f.write("\t\t\t\"Duration\":"+str(any.duration)+"\n")                        
-                if i is (len(self.schedule.anti_tasks) -1):
-                    f.write("\t\t}")
-                else:
-                    f.write("\t\t},")
-                i+=1
-            i = 0
-            f.write("\n\t]")
+        #     f.write("\n\"Anti\":\n\t[")
+        #     i=0
+        #     for any in self.schedule.anti_tasks:
+        #         f.write("\n\t\t{")
+        #         f.write("\n")
+        #         f.write("\t\t\t\"Name\":\""+any.name+"\",\n")
+        #         f.write("\t\t\t\"Type\":\""+any.type+"\",\n")
+        #         f.write("\t\t\t\"Start Date\":\""+any.start_date+"\",\n")
+        #         f.write("\t\t\t\"Start Time\":\""+any.start_time+"\",\n")
+        #         f.write("\t\t\t\"Duration\":"+any.duration+"\n")                        
+        #         if i is (len(self.schedule.anti_tasks) -1):
+        #             f.write("\t\t}")
+        #         else:
+        #             f.write("\t\t},")
+        #         i+=1
+        #     i = 0
+        #     f.write("\n\t]")
 
-            f.write("\n}")
+        #     f.write("\n}")
 
-    def read_schedule(self, filename):
-        f = open(filename)
-        data = json.load(f)
+    # def read_schedule(self, filename):
+        # print("\nRecurrint Task: ")
+        # for r in data['Recurring']:
+        #     tempTask = RecurringTask(r['Name'], r['Type'], r['Start Date'], int(r['Start Time']),\
+        #          int(r['Duration']), r['End Date'], r['Frequency'])
+        #     tempTask.display()
+
+        # print("\nTransient Task: ")
+        # for t in data['Transient']:
+        #     print(t)
+
+        # print("\nAnti Task: ")
+        # for a in data['Anti']:
+        #     print(a)
+        # # Closing file
+        # f.close()
+
         
-        print("\nRecurrint Task: ")
-        for r in data['Recurring']:
-            print(r)
-
-        print("\nTransient Task: ")
-        for t in data['Transient']:
-            print(t)
-
-        print("\nAnti Task: ")
-        for a in data['Anti']:
-            print(a)
-        # Closing file
-        f.close()
-   
- 
 #  def write_schedule(self, filename):
 #    with open(filename, 'w') as f:
 #      for task in self.tasks:

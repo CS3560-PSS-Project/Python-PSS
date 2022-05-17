@@ -1,43 +1,62 @@
-{
-"Recurring":
-	[
-		{
-			"Name":"task5",
-			"Type":"study",
-			"Start Date":"20220301",
-			"Start Time":"12:0",
-			"Duration":75.0,
-			"End Date":20220430,
-			"Frequency":"daily"
-		},
-		{
-			"Name":"task1",
-			"Type":"study",
-			"Start Date":"20220528",
-			"Start Time":"12:0",
-			"Duration":75.0,
-			"End Date":20220801,
-			"Frequency":"daily"
-		}
-	],
-"Transient":
-	[
-		{
-			"Name":"task2",
-			"Type":"visit",
-			"Start Date":"20220801",
-			"Start Time":"11:15",
-			"Duration":27.0
-		}
-	],
-"Anti":
-	[
-		{
-			"Name":"task3",
-			"Type":"cancellation",
-			"Start Date":"20220701",
-			"Start Time":"12:0",
-			"Duration":75.0
-		}
-	]
-}
+[
+  {
+    "Name": "task5",
+    "Type": "study",
+    "Start Date": 20220301,
+    "Start Time": 18.0,
+    "Duration": 1.0,
+    "End Date": 20220630,
+    "Frequency": 1
+  },
+  {
+    "Name": "task1",
+    "Type": "study",
+    "Start Date": 20220501,
+    "Start Time": 12.0,
+    "Duration": 1.0,
+    "End Date": 20220801,
+    "Frequency": 1
+  },
+  {
+    "Name": "task3",
+    "Type": "cancellation",
+    "Start Date": 20220603,
+    "Start Time": 12.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "task6",
+    "Type": "cancellation",
+    "Start Date": 20220701,
+    "Start Time": 12.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "task7",
+    "Type": "visit",
+    "Start Date": 20220603,
+    "Start Time": 9.0,
+    "Duration": 1.25
+  },
+  {
+    "Name": "task2",
+    "Type": "visit",
+    "Start Date": 20220603,
+    "Start Time": 12.0,
+    "Duration": 0.5
+  },
+  {
+    "Name": "task4",
+    "Type": "visit",
+    "Start Date": 20220701,
+    "Start Time": 11.5,
+    "Duration": 1.0
+  },
+  {
+    "Name": "task8",
+    "Type": "visit",
+    "Start Date": 20230603,
+    "Start Time": 19.0,
+    "Duration": 0.25
+  }
+]
