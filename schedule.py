@@ -3,6 +3,7 @@ import json
 from task import *
 from datetime import datetime
 from datetime import timedelta
+import os
 
 class Schedule:
     def __init__(self):
@@ -99,13 +100,11 @@ class Schedule:
                             else:
                                 print("Error: unable to create " + task.name + "; recurring task does not exist.") 
                                 return False
-                        # case default:
-                        #     print("unable to create the task") 
                 else:
-                    print("Error: the task, " + task.name + " crosses over day.\n")
+                    print("Error: the task, " + task.name + " crosses over day.")
                     return False
             else:
-                #print("an overlap found")
+                # an overlap found
                 return False
         else:
             print("Error: the name " + task.name + " is not unique.")
@@ -154,28 +153,30 @@ class Schedule:
     def delete_task(self, name):
         print("Deleting the following task:")
         task = self.find_task(name)
-        print()
         if task != None:
             match self.__check_type(task[0]):
                 case "recurring":
                     if self.__deleteAssociatedTasks(task[0])[0]:
                     # If a recurring task is deleted, then anti-tasks associated with all occurrences of this task are also deleted
                         self.recurring_tasks.remove(task[0])
+                        return True
                     else:
                         print("Error: the recurring task, " + name + " cannot be deleted.")
                 case "transient":
                     self.transient_tasks.remove(task[0])
+                    return True
                 case "anti_task":
                     # make sure anti task doesn't overlap any transient task; otherwise 
                     # a message will give the name of the two tasks that would conflict
                     if self.__getConflict(task[0]):
                         self.anti_tasks.remove(task[0]) 
+                        return True
                     else:
                         print("Error: " + name + "overlaps a transient task.")  
-                case default:
-                    print("Error: task doesn't exist.")
+                        return False
         else:
             print("Error: task does not exist.")
+            return False
       
     def __findAssociatedTasks(self, task):
         booked = [task.date_time_obj + timedelta(days=x) for x in \
@@ -227,9 +228,8 @@ class Schedule:
                 task.setFrequency(value)
 
     def edit_task(self, taskName, **kwargs):
-        print("Editing the following task:\n")
+        print("Editing the following task:")
         tuple = self.find_task(taskName) #tuple(task, index)
-        print()
         if(tuple != None):
             task = tuple[0].clone()
             temp = tuple[0].clone()
@@ -346,53 +346,56 @@ class Schedule:
             file.write(jsonFile)
             file.close()
         else:
-            print("Error: date should be in the following format: 'YYYYMMDD'")
+            print("Error: date should be in the following format: YYYYMMDD")
 
     def printSchedule(self):
-        print("\nRecurring:\n")
+        print("\t-------------\n\t| Recurring |\n\t-------------")
         for any in self.recurring_tasks:
             any.display()
-            print()
-        print("\nTransient:\n")
+        print("\t-------------\n\t| Transient |\n\t-------------")
         for any in self.transient_tasks:
             any.display()
-            print()
-        print("\nAnti task:\n")
+        print("\t-------------\n\t| Anti task |\n\t-------------")
         for any in self.anti_tasks:
             any.display()
-            print()
-    
+
+  
     def read_schedule(self, filename):
-        f = open(filename)
-        data = json.load(f)
-        flag = True
-        task = 0
-        for any in data:
-            if any['Type'] in ["class", "study", "sleep", "exercise", "work", "meal"]:
-                tempTask = RecurringTask(any['Name'], any['Type'], any['Start Date'], any['Start Time'], any['Duration'],\
-                    any['End Date'], any['Frequency'])
-                flag = self.create_task(tempTask)
-                if not flag:
-                    task = any # save the name of the task that cause error
-                    break
-            if any['Type'] in ["cancellation"]:
-                tempTask = AntiTask(any['Name'], any['Type'], any['Start Date'], any['Start Time'], any['Duration'])
-                flag = self.create_task(tempTask)
-                if not flag:
-                    task = any
-                    break
-            if any['Type'] in ["visit", "shopping", "appointment"]:
-                tempTask = TransientTask(any['Name'], any['Type'], any['Start Date'], any['Start Time'], any['Duration'])
-                flag = self.create_task(tempTask)
-                if not flag:
-                    task = any
-                    break
-        if not flag:
+        if os.path.exists(filename):
+            f = open(filename)
+            data = json.load(f)
+            flag = True
+            task = 0
             for any in data:
-                if any == task:
-                    break
-                self.__delete(any['Name'])
-        f.close()
+                if any['Type'] in ["class", "study", "sleep", "exercise", "work", "meal"]:
+                    tempTask = RecurringTask(any['Name'], any['Type'], any['Start Date'], any['Start Time'], any['Duration'],\
+                        any['End Date'], any['Frequency'])
+                    flag = self.create_task(tempTask)
+                    if not flag:
+                        task = any # save the name of the task that cause error
+                        break
+                if any['Type'] in ["cancellation"]:
+                    tempTask = AntiTask(any['Name'], any['Type'], any['Start Date'], any['Start Time'], any['Duration'])
+                    flag = self.create_task(tempTask)
+                    if not flag:
+                        task = any
+                        break
+                if any['Type'] in ["visit", "shopping", "appointment"]:
+                    tempTask = TransientTask(any['Name'], any['Type'], any['Start Date'], any['Start Time'], any['Duration'])
+                    flag = self.create_task(tempTask)
+                    if not flag:
+                        task = any
+                        break
+            if not flag:
+                for any in data:
+                    if any == task:
+                        break
+                    self.__delete(any['Name'])
+            f.close()
+            return True
+        else:
+            print("File does not exist.")
+            return False
 
     def __delete(self, name):
         task = self.find_task(name)[0]
@@ -408,60 +411,3 @@ class Schedule:
                 self.anti_tasks.remove(task) 
             case default:
                 print("task doesn't exist")
-
-# from Thanh starter file
-#     def create_task(self, name, type, start_date, start_time, duration, end_date=None, frequency=None):
-#         # Make sure names of tasks are unique 
-#         # case_type = self.__check_type(type)
-#         match self.__check_type(type):
-#             case "recurring":
-#                 # Check if tasks overlap
-#                 # make sure tasks don't crosses over days
-#                 task = RecurringTask(name, type, start_date, start_time, duration, end_date, frequency)
-#                 self.recurring_tasks.append(task)
-#             case "transient":
-#                 # Check if tasks overlap
-#                 # make sure tasks don't crosses over days
-#                 task = RecurringTask(name, type, start_date, start_time, duration, end_date, frequency)
-#                 self.recurring_tasks.append(task)
-#             case "anti_task":
-#                 # Ant-tasks cannot overlap
-#                 # Make sure that there is a recurring task when creating a anti-task
-#                 # making sure the start time of the recurring matches the start time and date of this anti-task
-#                 task = AntiTask(name, type, start_date, start_time, duration)   
-#                 self.anti_tasks.append(task)
-#             case default:
-#                 print("type doesn't exist")  
-
-#     def find_task(self, name):
-#         for task in self.transient_tasks:
-#             if task.name == name:   
-#                 #display_task(task)
-#                 return (task, self.transient_tasks.task[1(task))
-#         for task in self.recurring_tasks:
-#             if task.name == name:   
-#                 #display_task(task)
-#                 return (task, self.recurring_tasks.task[1(task))
-#         for task in self.anti_tasks:
-#             if task.name == name:   
-#                 #display_task(task)
-#                 return (task, self.anti_tasks.task[1(task))
-#         return None
-
-
-#     def delete_task(self, name):
-#         task = self.find_task(name)[0]
-#         match self.__check_type(task.type):
-#             case "recurring":
-#                 # If a recurring task is deleted, then anti-tasks associated with all occurrences of this task are also deleted
-#                 self.recurring_tasks.remove(task)
-#             case "transient":
-#                 self.transient_tasks.remove(task)
-#             case "anti_task":
-#                 # make sure anti task doesn't overlap any transient task; otherwise 
-#                 # a message will give the name of the two tasks that would conflict
-#                 self.anti_tasks.remove(task) 
-#             case default:
-#                 print("task doesn't exist")
- 
-#  #start_date=None, start_time=None, duration=None, end_date=None, frequency=None

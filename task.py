@@ -1,7 +1,6 @@
 from datetime import datetime
 from datetime import timedelta
 import re
-from tempfile import TemporaryDirectory
 
 class Task:
  def __init__(self,name, type, start_date, start_time, duration):
@@ -39,21 +38,30 @@ class Task:
             day = "31"
         return int(year+month+day)
     else:
-        return  20230101
+        print("Error: Invalid date!")
+        raise Exception("Invalid date")
 
  def getValidTime(self, start_time):
-    tempTime = self.__getNearestTime(start_time)
-    if tempTime >= 24.0 and tempTime < 25:
-        tempTime-=24.0  # "%.2d:%.2d" % (hour, min)    
-    elif tempTime >= 25.0:
-        tempTime = 23.75
-    return tempTime
+    try:
+        tempTime = self.__getNearestTime(start_time)
+        if tempTime >= 24.0 and tempTime < 25:
+            tempTime-=24.0     
+        elif tempTime >= 25.0:
+            tempTime = 23.75
+        elif tempTime < 0.0:
+            tempTime = 0.0
+        return tempTime
+    except:
+        print("Error: invalid time!")
 
  def getValidDuration(self, duration):
-    tempDuration = self.__getNearestTime(duration)
-    if duration > 23.75:
-        tempDuration = 23.75
-    return tempDuration
+    try:
+        tempDuration = self.__getNearestTime(duration)
+        if duration > 23.75:
+            tempDuration = 23.75
+        return tempDuration
+    except:
+        print("Error: invalid duration")
 
  def __getNearestTime(self, time):
     if time > 0:
@@ -72,7 +80,8 @@ class Task:
             hour+=1
         return hour+min
     else:
-        return 0.0
+        print("Error: time cannot be a negative number.")
+        raise Exception("Invalid time")
         
  def timeToStr(self, time):
     min = round(time - int(time), 2) 
@@ -98,7 +107,7 @@ class Task:
      self.duration = self.getValidDuration(duration)
      self.duration_obj = timedelta(minutes=self.duration*60)
  def display(self):
-     print("name: ", self.name, "\ntype: ", self.type, "\nstart date: ", self.start_date,\
+     print("--------------\n| name: ", self.name, "\n--------------", "\ntype: ", self.type, "\nstart date: ", self.start_date,\
           "\nstart time:", self.start_time, "\nduration: ", self.duration)
  def clone(self):
      tempTask = Task(self.name,self.type,self.start_date,self.start_time,self.duration)
