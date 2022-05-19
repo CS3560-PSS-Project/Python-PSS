@@ -16,7 +16,11 @@ def main():
         Cancellation = 10
 
     user1 = User("Tom", 1)
-    user1.read_schedule("Schedule.json")
+    fileName= input("Enter a file name to import schedule: ")
+    if os.path.exists(fileName):
+        user1.read_schedule(fileName)
+    else:
+        print("File does not exist.")
 
     while True:
         print("----------Menu----------")
@@ -37,8 +41,8 @@ def main():
             print("2)Study \t8)Shopping")
             print("3)Sleep \t9)Appointment")
             print("4)Excercise\n5)Work\n6)Meal")
-            taskOption = int(input("Enter your option: "))
             try:
+                taskOption = int(input("Enter your option: "))
                 if taskOption in [1, 2, 3, 4, 5, 6]:
                     taskNameCreate = input("Enter task name you want to create: ")
                     taskStartDate = int(input("Enter task start date with the format YYYYMMDD: "))
@@ -94,7 +98,11 @@ def main():
             user1.find_task(fileNameRead)
 
         elif option == '5':
-            user1.write_schedule("../Python-PSS/Schedule.json")
+            fileName = input("Enter a file name for your schedule: ")
+            while fileName[-5:].lower() != ".json":
+                print("the file name should have json extention!")
+                fileName = input("Enter another file name for your schedule: ")
+            user1.write_schedule(fileName)
             print("Write the schedule complete")
 
         elif option == '6':
@@ -132,3 +140,4 @@ def main():
    
 if __name__ == "__main__":
     main()
+

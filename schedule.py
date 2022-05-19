@@ -341,7 +341,7 @@ class Schedule:
                             'Start Time': any.start_time, 'Duration':any.duration}
                         data.append(entry)
         
-            jsonFile = json.dumps(data, indent=2)
+            jsonFile = json.dumps(data, indent=2)        
             file = open(fileName, 'w')
             file.write(jsonFile)
             file.close()
