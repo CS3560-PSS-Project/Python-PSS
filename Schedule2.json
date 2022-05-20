@@ -1,0 +1,66 @@
+[
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Start Date": 20200414,
+    "Start Time": 15.0,
+    "Duration": 1.0,
+    "End Date": 20200507,
+    "Frequency": 1
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Start Date": 20200414,
+    "Start Time": 17.0,
+    "Duration": 1.0,
+    "End Date": 20200507,
+    "Frequency": 1
+  },
+  {
+    "Name": "CS3560-Tu",
+    "Type": "Class",
+    "Start Date": 20200414,
+    "Start Time": 19.0,
+    "Duration": 1.25,
+    "End Date": 20200505,
+    "Frequency": 7
+  },
+  {
+    "Name": "CS3560-Th",
+    "Type": "Class",
+    "Start Date": 20200416,
+    "Start Time": 19.0,
+    "Duration": 1.25,
+    "End Date": 20200507,
+    "Frequency": 7
+  },
+  {
+    "Name": "Skip a meal",
+    "Type": "Cancellation",
+    "Start Date": 20200428,
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Skip For Visit",
+    "Type": "Cancellation",
+    "Start Date": 20200428,
+    "Start Time": 19.0,
+    "Duration": 1.25
+  },
+  {
+    "Name": "Intern Interview",
+    "Type": "Appointment",
+    "Start Date": 20200428,
+    "Start Time": 17.0,
+    "Duration": 2.5
+  },
+  {
+    "Name": "Going to Mall",
+    "Type": "Shopping",
+    "Start Date": 20200501,
+    "Start Time": 10.0,
+    "Duration": 1.5
+  }
+]

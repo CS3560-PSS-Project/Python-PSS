@@ -1,0 +1,394 @@
+[
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200414",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200414",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "CS3560-Tu",
+    "Type": "Class",
+    "Date": "20200414",
+    "Start Time": 19.0,
+    "Duration": 1.25
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200415",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200415",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200416",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200416",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "CS3560-Th",
+    "Type": "Class",
+    "Date": "20200416",
+    "Start Time": 19.0,
+    "Duration": 1.25
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200417",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200417",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200418",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200418",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200419",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200419",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200420",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200420",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200421",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200421",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "CS3560-Tu",
+    "Type": "Class",
+    "Date": "20200421",
+    "Start Time": 19.0,
+    "Duration": 1.25
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200422",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200422",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200423",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200423",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "CS3560-Th",
+    "Type": "Class",
+    "Date": "20200423",
+    "Start Time": 19.0,
+    "Duration": 1.25
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200424",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200424",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200425",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200425",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200426",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200426",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200427",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200427",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200428",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Intern Interview",
+    "Type": "Appointment",
+    "Date": "20200428",
+    "Start Time": 17.0,
+    "Duration": 2.5
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200429",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200429",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200430",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200430",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "CS3560-Th",
+    "Type": "Class",
+    "Date": "20200430",
+    "Start Time": 19.0,
+    "Duration": 1.25
+  },
+  {
+    "Name": "Going to Mall",
+    "Type": "Shopping",
+    "Date": "20200501",
+    "Start Time": 10.0,
+    "Duration": 1.5
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200501",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200501",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200502",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200502",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200503",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200503",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200504",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200504",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200505",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200505",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "CS3560-Tu",
+    "Type": "Class",
+    "Date": "20200505",
+    "Start Time": 19.0,
+    "Duration": 1.25
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200506",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200506",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Homework",
+    "Type": "Study",
+    "Date": "20200507",
+    "Start Time": 15.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "Dinner",
+    "Type": "Meal",
+    "Date": "20200507",
+    "Start Time": 17.0,
+    "Duration": 1.0
+  },
+  {
+    "Name": "CS3560-Th",
+    "Type": "Class",
+    "Date": "20200507",
+    "Start Time": 19.0,
+    "Duration": 1.25
+  }
+]

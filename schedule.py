@@ -43,8 +43,11 @@ class Schedule:
                     if any.name not in args:
                         booked = [any.date_time_obj + timedelta(days=x) for x in\
                             range(0, (any.date_time_end_obj-any.date_time_obj).days + 2, any.frequency)]
+                        # print(booked)
                         for canceled_day in self.anti_tasks:
-                            if self.__antiTaskExist(canceled_day, any): # if anti task exists, we can create another task overlapping with the recurrent task
+                            if self.__antiTaskExist(canceled_day, any) and canceled_day.date_time_obj in booked: 
+                                # if anti task exists, we can create another task overlapping with the recurrent task
+                                # print(canceled_day.date_time_obj)
                                 booked.remove(canceled_day.date_time_obj)                
                         for day in booked:
                             if day.date() == task.date_time_obj.date():
@@ -367,21 +370,23 @@ class Schedule:
             flag = True
             task = 0
             for any in data:
-                if any['Type'] in ["class", "study", "sleep", "exercise", "work", "meal"]:
-                    tempTask = RecurringTask(any['Name'], any['Type'], any['Start Date'], any['Start Time'], any['Duration'],\
-                        any['End Date'], any['Frequency'])
+                if any['Type'].lower() in ["class", "study", "sleep", "exercise", "work", "meal"]:
+                    tempTask = RecurringTask(any['Name'], any['Type'], any['StartDate'], any['StartTime'], any['Duration'],\
+                        any['EndDate'], any['Frequency'])
                     flag = self.create_task(tempTask)
                     if not flag:
                         task = any # save the name of the task that cause error
                         break
-                if any['Type'] in ["cancellation"]:
-                    tempTask = AntiTask(any['Name'], any['Type'], any['Start Date'], any['Start Time'], any['Duration'])
+                if any['Type'].lower() in ["cancellation"]:
+
+                    tempTask = AntiTask(any['Name'], any['Type'], any['Date'], any['StartTime'], any['Duration'])
+
                     flag = self.create_task(tempTask)
                     if not flag:
                         task = any
                         break
-                if any['Type'] in ["visit", "shopping", "appointment"]:
-                    tempTask = TransientTask(any['Name'], any['Type'], any['Start Date'], any['Start Time'], any['Duration'])
+                if any['Type'].lower() in ["visit", "shopping", "appointment"]:
+                    tempTask = TransientTask(any['Name'], any['Type'], any['Date'], any['StartTime'], any['Duration'])
                     flag = self.create_task(tempTask)
                     if not flag:
                         task = any
@@ -391,8 +396,11 @@ class Schedule:
                     if any == task:
                         break
                     self.__delete(any['Name'])
-            f.close()
-            return True
+                f.close()
+                return False
+            else:
+                f.close()
+                return True
         else:
             print("File does not exist.")
             return False

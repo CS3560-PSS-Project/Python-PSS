@@ -16,12 +16,6 @@ def main():
         Cancellation = 10
 
     user1 = User("Tom", 1)
-    fileName= input("Enter a file name to import schedule: ")
-    if os.path.exists(fileName):
-        user1.read_schedule(fileName)
-    else:
-        print("File does not exist.")
-
     while True:
         print("----------Menu----------")
         print("1. Create a task")
@@ -103,14 +97,14 @@ def main():
                 print("the file name should have json extention!")
                 fileName = input("Enter another file name for your schedule: ")
             user1.write_schedule(fileName)
-            print("Write the schedule complete")
+
 
         elif option == '6':
-            try:
+
                 fileNameRead = input("Enter a file name you want to read: ")
                 user1.read_schedule(fileNameRead)
-            except:
-                print("Something went wrong, try again!") 
+            # except:
+            #     print("Something went wrong, try again!") 
 
         elif option == '7':
             try:
